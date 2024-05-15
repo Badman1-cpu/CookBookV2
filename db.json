@@ -1,0 +1,27 @@
+
+{
+    "Recipes": [
+      {
+        "id": "b38a",
+        "name": "Fried Rice",
+        "description": "Day old white rice seasoned with soy sauce. Mix veg and egg added for taste",
+        "time": "25",
+        "cooked": 0
+      },
+      {
+        "id": "87e1",
+        "name": "Bacon egg and cheese",
+        "description": "I'm from NYC",
+        "time": "15",
+        "cooked": 0
+      },
+      {
+        "id": "393e",
+        "name": "Katsudon",
+        "description": "Katsudon is a popular Japanese food, a bowl of rice topped with a deep-fried breaded pork cutlet, egg, vegetables, and condiments.",
+        "time": "60",
+        "cooked": 0
+      }
+    ]
+  }
+  
