@@ -25,20 +25,20 @@
             }
         })
         .then (response => response.json())
-        .then(response => createCard(response))
+        .then(response => Createcards(response))
         .catch(console.error())
     }
     // Get Data from json server 
     function RecipeBook(){
         fetch ('http://localhost:3000/Recipes')
         .then(response => response.json())
-        .then(Recipes => Recipes.forEach(Recipes => Createcards(Recipes)))
+        .then(Recipes => console.log(Recipes))
+        .then(Recipes => Recipes.forEach(Createcards(Recipes)))
     }
-
 
 //Interaction with the DOM
     //Making recipe cards 
-    function Createcards(Recipes){
+    function Createcards(){
         const card = document.createElement('li')
         card.className ='card', card.innerHTML = 
         `
@@ -56,6 +56,13 @@
         //document.getElementById('delete').addEventListener('click', console.log('delete'))
     }
 
+    //
+
 
 //Calling Functions
-RecipeBook()
+function startUp(){
+    RecipeBook();
+    Createcards(Recipes);
+    Console.log('called function')
+}
+startUp()
