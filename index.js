@@ -1,6 +1,8 @@
 //Event Listerner 
     //Event Listener for submit button
-    document.getElementById('submitButton').addEventListener('click', console.log('click'))/*works*/
+    document.getElementById('submitButton').addEventListener('click', () => {
+        console.log('works')
+    }) /*works*/
 
     //Event Listener for Delete button 
     //document.getElementById('delete').addEventListener('click', console.log('delete'))/*can't work here*/
@@ -14,7 +16,7 @@
         fetch('http://localhost:3000/Recipes', {
             method : 'POST',
             headers: {
-                "content-type": application/json
+                "content-type": 'application/json'
             },
             body : JSON.stringify(recipeCard)
         })
@@ -25,20 +27,28 @@
             }
         })
         .then (response => response.json())
-        .then(response => Createcards(response))
+        .then(response => createCards(response))
         .catch(console.error())
     }
     // Get Data from json server 
     function RecipeBook(){
-        fetch ('http://localhost:3000/Recipes')
+        fetch('http://localhost:3000/Recipes')
+        .then(response => {
+            if(!response.ok){
+                throw new Error("I can't find the Recipes, Sorry!")
+            }
+        })
         .then(response => response.json())
-        .then(Recipes => console.log(Recipes))
-        .then(Recipes => Recipes.forEach(Createcards(Recipes)))
+        .then(data => {
+            const Recipes = data;
+            console.log(Recipes);
+            Recipes.forEach(recipe => createCards(recipe))
+        })
+        .catch(console.error())
     }
-
 //Interaction with the DOM
     //Making recipe cards 
-    function Createcards(){
+    function createCards(){
         const card = document.createElement('li')
         card.className ='card', card.innerHTML = 
         `
@@ -60,9 +70,12 @@
 
 
 //Calling Functions
-function startUp(){
-    RecipeBook();
-    Createcards(Recipes);
-    Console.log('called function')
+RecipeBook()
+
+
+
+
+//Debugg Test 
+function debug(){
+    console.log('click')
 }
-startUp()
