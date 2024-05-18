@@ -1,18 +1,27 @@
 //Event Listerner 
     //Event Listener for submit button
-    document.getElementById('submitButton').addEventListener('click', ) /*works*/
+    document.getElementById('submitButton').addEventListener('click', () => {
+        let recipe ={
+            name:document.getElementById('recipeName').value ,
+            time:document.getElementById('cookTime').value,
+            description:document.getElementById('description').value,
+            cooked : 0
+    }
+            recipeSubmit(recipe)
+
+    });
 
     //Event Listener for Delete button 
     //document.getElementById('delete').addEventListener('click', () =>{ console.log('delete')})/*can't work here*/
 
-//Definig Var
+//Definig 
     //const recipeCard = 
 
 
 
 //Interaction with Json Server 
     //Submitting Data to Json
-   function recipeSubmit(){
+   function recipeSubmit(recipe){
         fetch('http://localhost:3000/Recipes', {
             method : 'POST',
             headers: {
@@ -27,7 +36,7 @@
             }
         })*/
         .then (response => response.json())
-        .then(data => createCards(data))
+        .then(data => console.log(data))
         .catch(console.error)
     }
     // Get Data from json server 
@@ -41,7 +50,6 @@
         .then(response => response.json())
         .then(data => {
             Recipes = data;
-            console.log(Recipes);
             Recipes.forEach(Recipes => createCards(Recipes))
         })
         .catch(console.error)
@@ -60,27 +68,16 @@
             <p>Cooked ${Recipes.cooked} Times</p>
         </div>
         <div>
-        <button class="cooked"> I Made This </button>
-        <button class="delete"> Delete me </button>
+        <button id="cooked"> I Made This </button>
+        <button id="delete"> Delete me </button>
         </div>
         `
 
-        recipeList.appendChild(card)
+        recipeList.appendChild(card);
        // document.querySelector('#container').appendChild(card);S
-        //document.getElementById('delete').addEventListener('click', console.log('delete'))
+    document.getElementById('delete').addEventListener('click', () => {console.log('delete')});
+    document.getElementById('cooked').addEventListener('click', () => {console.log('cooked')})
     }
-
-    //Record data
-    function addRecipes(e){
-        e.preventDefault()
-          let recipe = {
-            name:e.target.name.value,
-            description:e.target.description.value,
-            time:e.target.time.value,
-            cooked: 0  }
-        recipeSubmit(recipe)
-      }
-
 
 //Calling Functions
 RecipeBook()
