@@ -97,9 +97,6 @@
 //Calling Functions
 RecipeBook()
 
-
-
-
 //Debugg Test 
 function debug(){
     console.log('click')
