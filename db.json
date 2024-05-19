@@ -8,20 +8,6 @@
       "cooked": 0
     },
     {
-      "id": "87e1",
-      "name": "Bacon egg and cheese",
-      "description": "I'm from NYC",
-      "time": "15",
-      "cooked": 0
-    },
-    {
-      "id": "393e",
-      "name": "Katsudon",
-      "description": "Katsudon is a popular Japanese food, a bowl of rice topped with a deep-fried breaded pork cutlet, egg, vegetables, and condiments.",
-      "time": "60",
-      "cooked": 0
-    },
-    {
       "id": "92b2",
       "name": "Fried Rice",
       "time": "25 Minutes",
@@ -29,10 +15,17 @@
       "cooked": 0
     },
     {
-      "id": "3e68",
-      "name": "Bacon egg and cheese",
-      "time": "15",
-      "description": "I'm from nyc",
+      "id": "0507",
+      "name": "Fried Rice",
+      "time": "25",
+      "description": "the bacon, egg and cheese “is everything you need: salty, crunchy, creamy, filling.",
+      "cooked": 0
+    },
+    {
+      "id": "6e8d",
+      "name": "Pie",
+      "time": "120",
+      "description": "hot fruit",
       "cooked": 0
     }
   ]

@@ -11,14 +11,6 @@
 
     });
 
-    //Event Listener for Delete button 
-    //document.getElementById('delete').addEventListener('click', () =>{ console.log('delete')})/*can't work here*/
-
-//Definig 
-    //const recipeCard = 
-
-
-
 //Interaction with Json Server 
     //Submitting Data to Json
    function recipeSubmit(recipe){
@@ -54,6 +46,25 @@
         })
         .catch(console.error)
     }
+
+    //Remove data From json server
+        //Deleting dat from json server
+        function removeRecipe(id){
+            fetch(`http://localhost:3000/Recipes/${id}`,{
+                method : 'DELETE',
+        },)
+        .then(response => response.json())
+        .then(data => console.log( data))
+        }
+
+    //updating Json data
+    function addCook(id){
+        fetch(`http://localhost:3000/Recipes/${id}`,{
+            method : 'PUT',
+            headers : {'content-type' : 'application/json'},
+            body :JSON.stringify(Recipes)
+        })
+    }
 //Interaction with the DOM
     //Making recipe cards 
     function createCards(Recipes){
@@ -65,7 +76,7 @@
             <h4>${Recipes.name}</h4>
             <p>${Recipes.time} Minutes </p>
             <p>${Recipes.description}</p>
-            <p>Cooked ${Recipes.cooked} Times</p>
+            <p id=log>Cooked ${Recipes.cooked} Times</p>
         </div>
         <div>
         <button id="cooked"> I Made This </button>
@@ -75,8 +86,12 @@
 
         recipeList.appendChild(card);
        // document.querySelector('#container').appendChild(card);S
-    document.getElementById('delete').addEventListener('click', () => {console.log('delete')});
-    document.getElementById('cooked').addEventListener('click', () => {console.log('cooked')})
+    card.querySelector('#delete').addEventListener('click', () => {
+        card.remove(),
+        removeRecipe(Recipes.id)     
+    });  
+    card.querySelector('#cooked').addEventListener('click', () => {
+    })
     }
 
 //Calling Functions
