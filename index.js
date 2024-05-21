@@ -59,11 +59,16 @@
 
     //updating Json data
     function addCook(id){
+        let update = {
+            cooked: ++cooked
+        }
         fetch(`http://localhost:3000/Recipes/${id}`,{
             method : 'PUT',
             headers : {'content-type' : 'application/json'},
-            body :JSON.stringify(Recipes)
+            body :JSON.stringify(update)
         })
+        .then(res => res.json())
+        .then(data => console.log(data))
     }
 //Interaction with the DOM
     //Making recipe cards 
@@ -90,7 +95,9 @@
         card.remove(),
         removeRecipe(Recipes.id)     
     });  
+//I want it to acess an element in the recipes array and change it by adding 1 to it 
     card.querySelector('#cooked').addEventListener('click', () => {
+        addCook(Recipes.id)
     })
     }
 
