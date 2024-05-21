@@ -59,13 +59,10 @@
 
     //updating Json data
     function addCook(id){
-        let update = {
-            cooked: ++cooked
-        }
         fetch(`http://localhost:3000/Recipes/${id}`,{
-            method : 'PUT',
+            method : 'PATCH',
             headers : {'content-type' : 'application/json'},
-            body :JSON.stringify(update)
+            body :JSON.stringify(Recipes)
         })
         .then(res => res.json())
         .then(data => console.log(data))
@@ -81,7 +78,9 @@
             <h4>${Recipes.name}</h4>
             <p>${Recipes.time} Minutes </p>
             <p>${Recipes.description}</p>
-            <p id=log>Cooked ${Recipes.cooked} Times</p>
+            <p id=log>
+            Cooked <span> ${Recipes.cooked}</span> Times
+            </p>
         </div>
         <div>
         <button id="cooked"> I Made This </button>
@@ -97,7 +96,9 @@
     });  
 //I want it to acess an element in the recipes array and change it by adding 1 to it 
     card.querySelector('#cooked').addEventListener('click', () => {
-        addCook(Recipes.id)
+        Recipes.cooked+= 1
+        card.querySelector('#span').textContent = Recipes.cooked
+        //addCook(Recipes.id)
     })
     }
 
