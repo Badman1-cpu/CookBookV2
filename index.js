@@ -56,17 +56,6 @@
         .then(response => response.json())
         .then(data => console.log( data))
         }
-
-    //updating Json data
-    function addCook(id){
-        fetch(`http://localhost:3000/Recipes/${id}`,{
-            method : 'PATCH',
-            headers : {'content-type' : 'application/json'},
-            body :JSON.stringify(Recipes)
-        })
-        .then(res => res.json())
-        .then(data => console.log(data))
-    }
 //Interaction with the DOM
     //Making recipe cards 
     function createCards(Recipes){
@@ -78,8 +67,8 @@
             <h4>${Recipes.name}</h4>
             <p>${Recipes.time} Minutes </p>
             <p>${Recipes.description}</p>
-            <p id=log>
-            Cooked <span> ${Recipes.cooked}</span> Times
+            <p>
+            Cooked <span id=log> ${Recipes.cooked}</span> Times
             </p>
         </div>
         <div>
@@ -97,9 +86,18 @@
 //I want it to acess an element in the recipes array and change it by adding 1 to it 
     card.querySelector('#cooked').addEventListener('click', () => {
         Recipes.cooked+= 1
-        card.querySelector('#span').textContent = Recipes.cooked
-        //addCook(Recipes.id)
+        card.querySelector('#log').innerHTML = Recipes.cooked
+        addCook(Recipes.id)
     })
+    }
+    function addCook(id){
+        fetch(`http://localhost:3000/Recipes/${id}`,{
+            method : 'PATCH',
+            headers : {'content-type' : 'application/json'},
+            body :JSON.stringify(`${Recipes.cooked}`)
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
     }
 
 //Calling Functions
@@ -109,3 +107,5 @@ RecipeBook()
 function debug(){
     console.log('click')
 }
+
+
