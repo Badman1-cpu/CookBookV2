@@ -87,14 +87,15 @@
     card.querySelector('#cooked').addEventListener('click', () => {
         Recipes.cooked+= 1
         card.querySelector('#log').innerHTML = Recipes.cooked
-        addCook(Recipes.id)
+        addCook(Recipes)
     })
     }
-    function addCook(id){
-        fetch(`http://localhost:3000/Recipes/${id}`,{
+    //Target the updated Recipe and change it.
+    function addCook(Recipes){
+        fetch(`http://localhost:3000/Recipes/${Recipes.id}`,{
             method : 'PATCH',
             headers : {'content-type' : 'application/json'},
-            body :JSON.stringify(`${Recipes.cooked}`)
+            body :JSON.stringify(Recipes)
         })
         .then(res => res.json())
         .then(data => console.log(data))
